@@ -29,4 +29,4 @@ if question_d == answer_d:
 if question_e == answer_e:
     score += 1
 
-print("your score is", score, "out of 572")
+print("your score is", score, "out of 5")
