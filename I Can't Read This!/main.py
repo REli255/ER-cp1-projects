@@ -62,5 +62,7 @@ elif choice==3:
     elif choice==4:
         print("You decide to leave the forest. Game over!")
 return
+
 if treasure_found:print("Congratulations! You've won the game!")
+
 if __name__=="__main__":play_game()
