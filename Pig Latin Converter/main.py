@@ -1,6 +1,8 @@
 # Eli Robison, Pig Latin Converter
 
-word = input("enter a word: ")
-pig = (word + word[0] + "ay")
+def igpay():
+    word = input("enter a word: ")
+    pig = (word[1:] + word[0] + "ay")
+    return(pig)
 
-print(pig[1:])
+print(igpay())
