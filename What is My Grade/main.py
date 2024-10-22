@@ -4,7 +4,7 @@ classes = int(input("enter the number of classes you take: "))
 
 for c in range(classes):
     course = input("enter the name of your class: ")
-    grade = input("enter you grade persentage: ")
+    grade = int(input("enter you grade persentage: "))
 
     if grade > 90:
         print("you have an A in", course)
