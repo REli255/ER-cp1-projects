@@ -17,18 +17,22 @@ class BankAccount:
             self.balance += amount
             return True
         return False
+    #this checks if the amount is greater than 0 then if so it adds that amount to your balance
     def withdraw(self, amount):
         if 0 < amount <= self.balance:
             self.balance -= amount
             return True
         return False
+    #this this checks if the amount is greater than 0 and less than your balance then if so it subtracts that amount from your balance
     def get_balance(self):
         return self.balance
+    #this returns the amount in our ballance
 
 def create_account():
     account_number = input("Enter account number: ")
     initial_balance = float(input("Enter initial balance: "))
     return BankAccount(account_number, initial_balance)
+#this allows you to make a new account by entering the account number and initial balance you want for the new account
 
 def main():
     accounts = {}
