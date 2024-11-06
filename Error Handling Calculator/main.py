@@ -8,17 +8,24 @@ second = input("enter the second number: ")
 try:
     if int(symbol) == 1:
         equation = int(first)+int(second)
+        print(equation)
     else:
         if int(symbol) == 2:
             equation = int(first)-int(second)
+            print(equation)
         else: 
             if int(symbol) == 3:
                 equation = int(first)*int(second)
+                print(equation)
             else:
                 if int(symbol) == 4:
-                    equation = round(int(first)/int(second))
+                    if int(second) == 0:
+                        print("you can not divide by 0")
+                    else:
+                        equation = round(int(first)/int(second))
+                        print(equation)
                 else:
                     equation = int(first)**int(second)
-    print(equation)
+                    print(equation)
 except:
     print("you did not enter numbers")
