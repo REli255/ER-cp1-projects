@@ -1,6 +1,9 @@
 # Eli Robison, Tic-Tac-Toe game
 
+import random
+
 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 rows = 3
 columns = 3
 
@@ -44,17 +47,82 @@ turns = 0
 winner = check()
 even = [0, 2, 4, 6, 8]
 
-while turns < 9 and :
+while turns < 9 and winner != "you won" and winner != "you lost":
     for x in range(rows):
         for y in range(columns):
-            print(board[x][y])
-    if turns is even:
+            print("", board[x][y], end= " |")
+        print("")
+    if turns in even:
+        print("player's turn")
         player = int(input("enter the number of where you wold like to play: "))
+        if player in numbers:
+            if player == 1:
+                board[0][0] = "X"
+                numbers.remove(player)
+                turns += 1
+            elif player == 2:
+                board[0][1] = "X"
+                numbers.remove(player)
+                turns += 1
+            elif player == 3:
+                board[0][2] = "X"
+                numbers.remove(player)
+                turns += 1
+            elif player == 4:
+                board[1][0] = "X"
+                numbers.remove(player)
+                turns += 1
+            elif player == 5:
+                board[1][1] = "X"
+                numbers.remove(player)
+                turns += 1
+            elif player == 6:
+                board[1][2] = "X"
+                numbers.remove(player)
+                turns += 1
+            elif player == 7:
+                board[2][0] = "X"
+                numbers.remove(player)
+                turns += 1
+            elif player == 8:
+                board[2][1] = "X"
+                numbers.remove(player)
+                turns += 1
+            elif player == 9:
+                board[2][2] = "X"
+                numbers.remove(player)
+                turns += 1
+            else:
+                print("that is not an option")
+        else:
+            print("that is not an option")
     else:
-        computer = O
-    turns += 1
+        print("computer's turn")
+        computer = random.choice(numbers)
+        if computer == 1:
+            board[0][0] = "O"
+        elif computer == 2:
+            board[0][1] = "O"
+        elif computer == 3:
+            board[0][2] = "O"
+        elif computer == 4:
+            board[1][0] = "O"
+        elif computer == 5:
+            board[1][1] = "O"
+        elif computer == 6:
+            board[1][2] = "O"
+        elif computer == 7:
+            board[2][0] = "O"
+        elif computer == 8:
+            board[2][1] = "O"
+        elif computer == 9:
+            board[2][2] = "O"
+        turns += 1
+        numbers.remove(computer) 
     winner = check()
-    break
 
-winner = check()
+for x in range(rows):
+        for y in range(columns):
+            print("", board[x][y], end= " |")
+        print("")
 print(winner)
