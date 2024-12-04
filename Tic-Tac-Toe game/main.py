@@ -54,7 +54,7 @@ while turns < 9 and winner != "you won" and winner != "you lost":
         print("")
     if turns in even:
         print("player's turn")
-        player = int(input("enter the number of where you wold like to play: "))
+        player = int(input("enter the number of where you would like to play: "))
         if player in numbers:
             if player == 1:
                 board[0][0] = "X"
