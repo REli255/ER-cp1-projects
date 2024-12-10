@@ -12,25 +12,25 @@ while True:
         race = int(input("enter the race of your character (1=human, 2=elf, 3=goblin, 4=orc): "))
         if race == 1:
             race = races[0]
-            health = 11
+            health = 31
             strength = 11
             dexterity = 11
             intelligence = 11
         elif race == 2:
             race = races[1]
-            health = 12
+            health = 32
             strength = 10
             dexterity = 12
             intelligence = 11
         elif race == 3:
             race = races[2]
-            health = 9
+            health = 29
             strength = 11
             dexterity = 14
             intelligence = 10
         else:
             race = races[3]
-            health = 13
+            health = 33
             strength = 14
             dexterity = 8
             intelligence = 9
@@ -62,9 +62,11 @@ while True:
             intelligence += 5
         
         print(name, "is a", race, job, "with", health, "health,", strength, "strength,", dexterity, "dexterity and", intelligence, "intelligence")
+        stats = ("you have", health, "health,", strength, "strength,", dexterity, "dexterity and", intelligence, "intelligence")
         
         def puzzle():
-            puzzles = ["math", "Tic Tac Toe", "spotting", "Rock Paper Scissors"]
+            print(stats)
+            puzzles = ["math", "Tic Tac Toe", "Rock Paper Scissors"]
             problem = random.choice(puzzles)
             if problem == "math":
                 score = 0
@@ -92,7 +94,7 @@ while True:
                 if score <= 3:
                     print("you beat the puzzle")
                 else:
-                    health -= 1
+                    health -= 3
             if problem == "Tic Tac Toe":
                 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
                 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -219,68 +221,122 @@ while True:
                 if winner == "you won":
                     print("you beat the puzzle")
                 else:
-                    health -= 1
-            if problem is spotting:
-                have the player find how many letter d there is
-            if problem is Rock Paper Scissors:
-                have the player play a game of rock paper scissors
-        Display “you are at your home and need to complete a puzzle to move on.”
-        Have the player do a puzzle()
+                    health -= 2
+            if problem is "Rock Paper Scissors":
+                rps = ["Rock", "Paper", "Scissors"]
+                man = int(input("enter 1 for Rock, 2 for Paper or 3 for Scissors: "))
+                while True:
+                    if man == 1:
+                        pass
+                    elif man == 2:
+                        pass
+                    elif man == 3:
+                        pass
+                    else:
+                        print("that is not an option please try again")
+                        continue
+                    bot = random.choice(rps)
+                    if man == 1 and bot == "Rock":
+                        winner = "you tied"
+                    elif man == 1 and bot == "Paper":
+                        winner = "you lost"
+                    elif man == 1 and bot == "Scissors":
+                        winner = "you won"
+                    elif man == 2 and bot == "Rock":
+                        winner = "you won"
+                    elif man == 2 and bot == "Paper":
+                        winner = "you tied"
+                    elif man == 2 and bot == "Scissors":
+                        winner = "you lost"
+                    elif man == 3 and bot == "Rock":
+                        winner = "you lost"
+                    elif man == 3 and bot == "Paper":
+                        winner = "you won"
+                    else:
+                        winner = "you tied"
+                    print("you picked", rps[man - 1], "and the bot picked", bot)
+                    print(winner)
+                    if winner == "you won":
+                        print("you beat the puzzle")
+                    else:
+                        health -= 2
+                    break
+            if health <= 0:
+                print("you died")
+                break
+        print("you are at your home and need to complete a puzzle to move on.")
+        puzzle()
+        choice = input("enter where you want to go next(1 = storm village, 2 = rain village): ")
+        def fight():
+            enemies = ["Goblin", "Minotaur", "Obsidian Golem", "Lava Titan", "Water Titan"]
+            if choice == 1:
+                enemy = enemies[0]
+                e_stats = 8
+                e_health = 10
+            elif choice == 4:
+                e_stats = 9
+                e_health = 12
+                enemy = enemies[1]
+            elif choice == 6:
+                enemy = enemies[2]
+                e_stats = 10
+                e_health = 10
+            elif choice == 8:
+                enemy = enemies[3]
+                e_stats = 13
+                e_health = 22
+            elif choice == 9:
+                enemy = enemies[4]
+                e_stats = 12
+                e_health = 24
+            
+            print("you will now fight", enemy)
+            while health > 0 and e_health > 0:
+                print(stats)
+                health -= e_stats
+                e_health -= strength
+            if health <= 0:
+                print("you died")
+                break
+            else:
+                print ("you won the fight")
+        if choice == 1:
+            print("you are at storm village and need to complete a fight to get an item and move on.")
+            fight()
+        if choice == 2:
+            Display “you are at rain village and need to complete a puzzle to get an item and move on.”
+            Have the player do a puzzle()
         Initialize “choice” variable to Get where the player wants to go
-        Function fight()
-        Initialize “enemies” variable to [Goblin, Minotaur, Obsidian Golem, Lava Titan, Water Titan]
-        If choice is storm village
-        Initialize “enemy” variable to enemies[0]
-        Else If choice is canyon village
-        Initialize “enemy” variable to enemies[1]
-        Else If choice is obsidian village
-        Initialize “enemy” variable to enemies[2]
-        Else If choice is volcano cloud
-        Initialize “enemy” variable to enemies[3]
-        Else If choice is ocean cloud
-        Initialize “enemy” variable to enemies[4]
-        Display “you will now fight” enemy
-        Have the player fight enemy
-        if health is 0 or less
-        Display “you died”
-        Break
-        If choice is storm village
-        Display “you are at storm village and need to complete a fight to get an item and move on.”
-        Have the player do a fight()
-        If choice is rain village
-        Display “you are at rain village and need to complete a puzzle to get an item and move on.”
-        Have the player do a puzzle()
+        if choice == 3:
+            Display “you are at desert village and need to complete a puzzle to move on.”
+            Have the player do a puzzle()
+        if choice == 4:
+            Display “you are at canyon village and need to complete a fight to move on.”
+            Have the player do a fight()
+        if choice == 5:
+            Display “you are at mountain village and need to complete a puzzle to get an item and move on.”
+            Have the player do a puzzle()
         Initialize “choice” variable to Get where the player wants to go
-        If choice is desert village
-        Display “you are at desert village and need to complete a puzzle to move on.”
-        Have the player do a puzzle()
-        If choice is canyon village
-        Display “you are at canyon village and need to complete a fight to move on.”
-        Have the player do a fight()
-        If choice is mountain village
-        Display “you are at mountain village and need to complete a puzzle to get an item and move on.”
-        Have the player do a puzzle()
+        if choice == 6:
+            isplay “you are at obsidian village and need to complete a fight to get an item and move on.”
+            Have the player do a fight()
+        if choice == 7:
+            Display “you are at beach village and need to complete a puzzle to get an item and move on.”
+            Have the player do a puzzle()
         Initialize “choice” variable to Get where the player wants to go
-        If choice is obsidian village
-        isplay “you are at obsidian village and need to complete a fight to get an item and move on.”
-        Have the player do a fight()
-        If choice is beach village
-        Display “you are at beach village and need to complete a puzzle to get an item and move on.”
-        Have the player do a puzzle()
-        Initialize “choice” variable to Get where the player wants to go
-        If choice is volcano cloud
-        Display “you are at storm village and need to defeat the lava titan to win the game.”
-        Have the player do a fight()
-        If player won the fight
-        Display “you beat the game”
-        If choice is ocean cloud
-        Display “you are at storm village and need to defeat the water titan to win the game.”
-        Have the player do a fight()
-        If player won the fight
-        Display “you beat the game”
+        if choice == 8:
+            Display “you are at storm village and need to defeat the lava titan to win the game.”
+            Have the player do a fight()
+            If player won the fight
+            Display “you beat the game”
+        if choice == 9:
+            Display “you are at storm village and need to defeat the water titan to win the game.”
+            Have the player do a fight()
+            If player won the fight
+            Display “you beat the game”
         Break 
-        Initialize “again” variable to Get if the player wants to play again
-        If again is yes
+    Initialize “again” variable to Get if the player wants to play again
+    If again is yes
         Display “starting over”
-        Else 
+    Else 
         Break 
