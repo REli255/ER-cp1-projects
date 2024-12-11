@@ -62,7 +62,7 @@ while True:
             intelligence += 5
         
         print(name, "is a", race, job, "with", health, "health,", strength, "strength,", dexterity, "dexterity and", intelligence, "intelligence")
-        stats = ("you have", health, "health,", strength, "strength,", dexterity, "dexterity and", intelligence, "intelligence")
+        stats = ("you have", health, "health,", strength, "strength,", dexterity, "dexterity and", intelligence, "intelligence"0
         
         def puzzle():
             print(stats)
@@ -222,7 +222,7 @@ while True:
                     print("you beat the puzzle")
                 else:
                     health -= 2
-            if problem is "Rock Paper Scissors":
+            if problem == "Rock Paper Scissors":
                 rps = ["Rock", "Paper", "Scissors"]
                 man = int(input("enter 1 for Rock, 2 for Paper or 3 for Scissors: "))
                 while True:
@@ -261,12 +261,29 @@ while True:
                     else:
                         health -= 2
                     break
-            if health <= 0:
-                print("you died")
-                break
+        
+        def items():
+            things = ["knife", "club", "potion"]
+            item = random.choice(things)
+            if item == things[0]:
+                print("you got a", things[0], "which increases your strength by 3")
+                strength += 3
+            elif item == things[1]:
+                print("you got a", things[1], "which increases your strength by 5")
+                strength += 5
+            else:
+                print("you got a", things[2], "which increases your health by 5")
+                health += 5
+            print(stats)
+        
         print("you are at your home and need to complete a puzzle to move on.")
         puzzle()
+        if health <= 0:
+                print("you died")
+                break
+
         choice = input("enter where you want to go next(1 = storm village, 2 = rain village): ")
+
         def fight():
             enemies = ["Goblin", "Minotaur", "Obsidian Golem", "Lava Titan", "Water Titan"]
             if choice == 1:
@@ -296,47 +313,67 @@ while True:
                 health -= e_stats
                 e_health -= strength
             if health <= 0:
-                print("you died")
-                break
+                pass
             else:
                 print ("you won the fight")
+        
         if choice == 1:
             print("you are at storm village and need to complete a fight to get an item and move on.")
             fight()
+            items()
         if choice == 2:
-            Display “you are at rain village and need to complete a puzzle to get an item and move on.”
-            Have the player do a puzzle()
-        Initialize “choice” variable to Get where the player wants to go
+            print("you are at rain village and need to complete a puzzle to get an item and move on.")
+            puzzle()
+            items()
+        if health <= 0:
+                print("you died")
+                break
+
+        choice = input("enter where you want to go next(3 = desert village, 4 = canyon village, 5 = mountain village): ")
         if choice == 3:
-            Display “you are at desert village and need to complete a puzzle to move on.”
-            Have the player do a puzzle()
+            print("you are at desert village and need to complete a puzzle to move on.")
+            puzzle()
         if choice == 4:
-            Display “you are at canyon village and need to complete a fight to move on.”
-            Have the player do a fight()
+            print("you are at canyon village and need to complete a fight to get move on.")
+            fight()
         if choice == 5:
-            Display “you are at mountain village and need to complete a puzzle to get an item and move on.”
-            Have the player do a puzzle()
-        Initialize “choice” variable to Get where the player wants to go
+            print("you are at mountain village and need to complete a puzzle to move on.")
+            puzzle()
+        if health <= 0:
+                print("you died")
+                break
+
+        choice = input("enter where you want to go next(6 = obsidian village, 7 = beach village): ")
         if choice == 6:
-            isplay “you are at obsidian village and need to complete a fight to get an item and move on.”
-            Have the player do a fight()
+            print("you are at obsidian village and need to complete a fight to get an item and move on.")
+            fight()
+            items()
         if choice == 7:
-            Display “you are at beach village and need to complete a puzzle to get an item and move on.”
-            Have the player do a puzzle()
-        Initialize “choice” variable to Get where the player wants to go
+            print("you are at beach village and need to complete a puzzle to get an item and move on.")
+            puzzle()
+            items()
+        if health <= 0:
+                print("you died")
+                break
+
+        choice = input("enter where you want to go next(8 = volcano cloud, 9 = ocean cloud): ")
         if choice == 8:
-            Display “you are at storm village and need to defeat the lava titan to win the game.”
-            Have the player do a fight()
-            If player won the fight
-            Display “you beat the game”
+            print("you are at the volcano cloud and need to defeat the lava titan to win the game.")
+            fight()
         if choice == 9:
-            Display “you are at storm village and need to defeat the water titan to win the game.”
-            Have the player do a fight()
-            If player won the fight
-            Display “you beat the game”
-        Break 
-    Initialize “again” variable to Get if the player wants to play again
-    If again is yes
-        Display “starting over”
-    Else 
-        Break 
+            print("you are at the ocean cloud and need to defeat the water titan to win the game.")
+            fight()
+        if health < 0:
+            print("you beat the game")
+        else:
+            print("you died")
+            break
+        
+        break 
+
+    again = input("do you want to play again (yes or no): ")
+    if again == "yes":
+        print("starting over")
+    else:
+        print("thank you for playing")
+        break
