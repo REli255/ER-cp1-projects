@@ -62,7 +62,7 @@ while True:
             intelligence += 5
         
         print(name, "is a", race, job, "with", health, "health,", strength, "strength,", dexterity, "dexterity and", intelligence, "intelligence")
-        stats = ("you have", health, "health,", strength, "strength,", dexterity, "dexterity and", intelligence, "intelligence"0
+        stats = ("you have", health, "health,", strength, "strength,", dexterity, "dexterity and", intelligence, "intelligence")
         
         def puzzle():
             print(stats)
@@ -94,7 +94,7 @@ while True:
                 if score <= 3:
                     print("you beat the puzzle")
                 else:
-                    health -= 3
+                    stats[3] -= 3
             if problem == "Tic Tac Toe":
                 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
                 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -212,7 +212,7 @@ while True:
                             board[2][2] = "O"
                         turns += 1
                         numbers.remove(computer) 
-                winner = check()
+                    winner = check()
                 for x in range(rows):
                     for y in range(columns):
                         print("", board[x][y], end= " |")
@@ -221,7 +221,7 @@ while True:
                 if winner == "you won":
                     print("you beat the puzzle")
                 else:
-                    health -= 2
+                    stats[3] -= 2
             if problem == "Rock Paper Scissors":
                 rps = ["Rock", "Paper", "Scissors"]
                 man = int(input("enter 1 for Rock, 2 for Paper or 3 for Scissors: "))
@@ -259,7 +259,7 @@ while True:
                     if winner == "you won":
                         print("you beat the puzzle")
                     else:
-                        health -= 2
+                        stats[3] -= 2
                     break
         
         def items():
@@ -308,11 +308,11 @@ while True:
                 e_health = 24
             
             print("you will now fight", enemy)
-            while health > 0 and e_health > 0:
+            while stats[3] > 0 and e_health > 0:
                 print(stats)
-                health -= e_stats
+                stats[3] -= e_stats
                 e_health -= strength
-            if health <= 0:
+            if stats[3] <= 0:
                 pass
             else:
                 print ("you won the fight")
