@@ -66,6 +66,7 @@ while True:
         
         def puzzle():
             print(stats)
+            health = stats[3]
             puzzles = ["math", "Tic Tac Toe", "Rock Paper Scissors"]
             problem = random.choice(puzzles)
             if problem == "math":
@@ -76,7 +77,7 @@ while True:
                 question_d = int(input("what does 33-56 equal: "))
                 question_e = int(input("what does 132/11 equal: "))
                 answer_a = 72
-                answer_b = 153
+                answer_b = 143
                 answer_c = 162
                 answer_d = -23
                 answer_e = 12
@@ -91,10 +92,10 @@ while True:
                 if question_e == answer_e:
                     score += 1
                 print("your score is", score, "out of 5")
-                if score <= 3:
+                if score >= 3:
                     print("you beat the puzzle")
                 else:
-                    stats[3] -= 3
+                    health -= 3
             if problem == "Tic Tac Toe":
                 board = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
                 numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -259,7 +260,7 @@ while True:
                     if winner == "you won":
                         print("you beat the puzzle")
                     else:
-                        stats[3] -= 2
+                        health -= 2
                     break
         
         def items():
@@ -308,11 +309,17 @@ while True:
                 e_health = 24
             
             print("you will now fight", enemy)
-            while stats[3] > 0 and e_health > 0:
+            while health > 0 and e_health > 0:
                 print(stats)
-                stats[3] -= e_stats
-                e_health -= strength
-            if stats[3] <= 0:
+                dodge = input("do you want to atack or dodge: ")
+                health = stats[3]
+                if dodge == "attack":
+                    health -= e_stats
+                    e_health -= strength
+                else:
+                    health += 3
+                    e_health += 2
+            if health <= 0:
                 pass
             else:
                 print ("you won the fight")
