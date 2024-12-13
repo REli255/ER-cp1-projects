@@ -266,6 +266,8 @@ while True:
         def items():
             things = ["knife", "club", "potion"]
             item = random.choice(things)
+            health = stats[3]
+            strength = stats[5]
             if item == things[0]:
                 print("you got a", things[0], "which increases your strength by 3")
                 strength += 3
@@ -283,10 +285,11 @@ while True:
                 print("you died")
                 break
 
-        choice = input("enter where you want to go next(1 = storm village, 2 = rain village): ")
+        choice = int(input("enter where you want to go next(1 = storm village, 2 = rain village): "))
 
         def fight():
             enemies = ["Goblin", "Minotaur", "Obsidian Golem", "Lava Titan", "Water Titan"]
+            health = stats[3]
             if choice == 1:
                 enemy = enemies[0]
                 e_stats = 8
@@ -308,11 +311,12 @@ while True:
                 e_stats = 12
                 e_health = 24
             
+            e_state = ("the", enemy, "has", e_health, "health and", e_stats, "strength")
             print("you will now fight", enemy)
             while health > 0 and e_health > 0:
                 print(stats)
-                dodge = input("do you want to atack or dodge: ")
-                health = stats[3]
+                print(e_state)
+                dodge = input("do you want to attack or dodge: ")
                 if dodge == "attack":
                     health -= e_stats
                     e_health -= strength
@@ -336,7 +340,7 @@ while True:
                 print("you died")
                 break
 
-        choice = input("enter where you want to go next(3 = desert village, 4 = canyon village, 5 = mountain village): ")
+        choice = int(input("enter where you want to go next(3 = desert village, 4 = canyon village, 5 = mountain village): "))
         if choice == 3:
             print("you are at desert village and need to complete a puzzle to move on.")
             puzzle()
@@ -350,7 +354,7 @@ while True:
                 print("you died")
                 break
 
-        choice = input("enter where you want to go next(6 = obsidian village, 7 = beach village): ")
+        choice = int(input("enter where you want to go next(6 = obsidian village, 7 = beach village): "))
         if choice == 6:
             print("you are at obsidian village and need to complete a fight to get an item and move on.")
             fight()
@@ -363,14 +367,14 @@ while True:
                 print("you died")
                 break
 
-        choice = input("enter where you want to go next(8 = volcano cloud, 9 = ocean cloud): ")
+        choice = int(input("enter where you want to go next(8 = volcano cloud, 9 = ocean cloud): "))
         if choice == 8:
             print("you are at the volcano cloud and need to defeat the lava titan to win the game.")
             fight()
         if choice == 9:
             print("you are at the ocean cloud and need to defeat the water titan to win the game.")
             fight()
-        if health < 0:
+        if health > 0:
             print("you beat the game")
         else:
             print("you died")
