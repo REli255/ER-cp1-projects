@@ -222,7 +222,7 @@ while True:
                 if winner == "you won":
                     print("you beat the puzzle")
                 else:
-                    stats[3] -= 2
+                    health -= 2
             if problem == "Rock Paper Scissors":
                 rps = ["Rock", "Paper", "Scissors"]
                 man = int(input("enter 1 for Rock, 2 for Paper or 3 for Scissors: "))
@@ -317,6 +317,7 @@ while True:
                 print(stats)
                 print(e_state)
                 dodge = input("do you want to attack or dodge: ")
+                health = stats[3]
                 if dodge == "attack":
                     health -= e_stats
                     e_health -= strength
